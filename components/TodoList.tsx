@@ -73,17 +73,35 @@ export default function TodoList({ session }: { session: Session }) {
             setNewTaskText(e.target.value)
           }}
         />
+       <button
+  onClick={() => window.print()}
+  className="btn-black group relative w-10 h-10 p-1 flex items-center justify-center"
+>
+  <img
+    src="/printer-white.svg"
+    alt="Imprimer"
+    className="absolute inset-0 m-auto w-6 h-6 object-contain group-hover:hidden"
+  />
+  <img
+    src="/printer-black.svg"
+    alt="Imprimer"
+    className="absolute inset-0 m-auto w-6 h-6 object-contain hidden group-hover:block"
+  />
+</button>
+
         <button className="btn-black" type="submit">
           Add
         </button>
       </form>
       {!!errorText && <Alert text={errorText} />}
       <div className="bg-white shadow overflow-hidden rounded-md">
-        <ul>
+        <div id="todo-print">
+          <ul>
           {todos.map((todo) => (
             <Todo key={todo.id} todo={todo} onDelete={() => deleteTodo(todo.id)} />
           ))}
-        </ul>
+          </ul>
+        </div>
       </div>
     </div>
   )
